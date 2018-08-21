@@ -9,6 +9,7 @@ import { SampleDashboardComponent } from './sample-dashboard/sample-dashboard.co
       path: '',
       component: DashboardComponent,
       children: [
+        { path: '', redirectTo: 'sample-dashboard'},
         { path: 'sample-dashboard', component: SampleDashboardComponent }
       ]
     }

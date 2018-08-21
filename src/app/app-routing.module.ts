@@ -4,7 +4,7 @@ import { CallbackComponent } from './security/callback/callback.component';
 
 @NgModule({
   imports: [RouterModule.forRoot([
-    { path: '', redirectTo: '/admin', pathMatch: 'full' },
+    { path: '', redirectTo: 'admin', pathMatch: 'full' },
     { path: 'callback', component: CallbackComponent },
     { path: 'admin', loadChildren: './admin/admin.module#AdminModule' }
   ])],

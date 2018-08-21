@@ -9,6 +9,7 @@ import { UnderConstructionComponent } from './under-construction/under-construct
       path: '',
       component: AdminComponent,
       children: [
+        { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
         { path: 'under-construction', component: UnderConstructionComponent },
         { path: 'dashboard', loadChildren: '../dashboard/dashboard.module#DashboardModule' }
       ]

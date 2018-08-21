@@ -22,37 +22,26 @@ export class SideNavigationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subscribeNavigation();
+    this.updateNavigation(this.router.url);
   }
 
-  public subscribeNavigation() {
-    this.routerSubscription = this.router.events.subscribe(i => this.onRouterNavigation(i));
-  }
+  
 
-  /**
-   * Parses URL and map route to active menu selection
-   * @param observableEvent Router event
-   */
-  private onRouterNavigation(observableEvent) {
-    if (observableEvent instanceof NavigationEnd) {
-      // TODO: make it nicer
-      console.log("onRouterNavigation: Full page refresh detected: urlAfterRedirects=" + observableEvent.urlAfterRedirects);
-      this.navigationService.getNavigationList().forEach((g) => {
-        g.items.forEach((i) => {
-          if ("/" + i.routerLink === observableEvent.urlAfterRedirects) {
-            this.navigationService.selectedNavigationItem = i;
-          }
-        });
+  public updateNavigation(url: String ) {
+    console.log('updateNavigation: ' + url);
+    this.navigationService.getNavigationList().forEach((g) => {
+      g.items.forEach((i) => {
+        if ('/admin/' + i.routerLink === url) {
+          this.navigationService.selectedNavigationItem = i;
+        }
       });
-      // if not found then set first element as active
-      if (this.navigationService.selectedNavigationItem == null) {
-        console.log("onRouterNavigation: URL address not mapped to menu selection. Using default");
-        this.navigationService.selectedNavigationItem = this.navigationService.getNavigationList()[0].items[0];
-      }
-      this.navigationService.updateSelectedNavigationGroup();
-      // Unsubscribing, because needed only on full-page refresh with URL address
-      this.routerSubscription.unsubscribe();
+    });
+    // if not found then set first element as active
+    if (this.navigationService.selectedNavigationItem == null) {
+      console.log('updateNavigation: URL address not mapped to menu selection. Using default');
+      this.navigationService.selectedNavigationItem = this.navigationService.getNavigationList()[0].items[0];
     }
+    this.navigationService.updateSelectedNavigationGroup();
   }
 
   public onClickNavigationItem(navigationItem: NavigationItem) {
@@ -61,7 +50,7 @@ export class SideNavigationComponent implements OnInit {
   }
 
   public isSelectedItem(navigationItem: NavigationItem) {
-    return navigationItem == this.navigationService.selectedNavigationItem;
+    return navigationItem === this.navigationService.selectedNavigationItem;
   }
   
 }
