@@ -4,13 +4,13 @@ import { NavigationGroup } from "../domain/navigation-group";
 
 export const NAVIGATION_MENU_DATA: NavigationGroup[] = [{
     icon: "pie_chart",
-    name: "Dashboards",
+    name: "Showcase",
     items: [{
-        routerLink: "dashboard",
-        name: "Overview"
+        routerLink: "three-showcase/data-center-scene",
+        name: "Data Center"
     }, {
-        routerLink: "under-construction",
-        name: "Summary"
+        routerLink: "dashboard/sample-dashboard",
+        name: "Dashboard"
     }]
 }, {
     icon: "tune",

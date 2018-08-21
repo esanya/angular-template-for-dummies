@@ -38,7 +38,7 @@ export class WebGLRendererComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     console.log('RendererComponent.ngAfterViewInit');
-    this.viewInitialized = true;
+    this.viewInitialized = true;    
     this.startRendering();
   }
 
@@ -73,16 +73,20 @@ export class WebGLRendererComponent implements AfterViewInit {
       antialias: true
     });
     this.renderer.setPixelRatio(devicePixelRatio);
-    this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
-
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.renderer.setClearColor(0xffffff, 1);
     this.renderer.autoClear = true;
-
     this.updateChildCamerasAspectRatio();
-    this.render();
+    
+    setTimeout(() => {
+      this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
+      this.updateChildCamerasAspectRatio();
+      this.render();
+    },1);
   }
+
+
 
   public render() {
     // if (this.sceneComponents != undefined && this.sceneComponents.length == 1 &&

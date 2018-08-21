@@ -93,9 +93,8 @@ export class OrbitControlsDirective implements AfterViewInit, OnChanges, OnDestr
     }
     if (this.childRenderers === undefined || this.childRenderers.first === undefined) {
       throw new Error('Renderer is not found');
-    }
-
-    this.setUpOrbitControls();
+    }    
+    this.setUpOrbitControls();    
   }
 
 }
